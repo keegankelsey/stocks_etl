@@ -43,7 +43,7 @@ def read_symbols(symbols):
         one, and only one symbol per line. """
     try:
         with open(symbols) as f:
-    	    lines = f.read().splitlines()
+            lines = f.read().splitlines()
         return(lines)
     except:
         print('Could not read list of symbols')
@@ -56,9 +56,9 @@ def generate_url_payload(call_function, symbol, outputsize, apikey):
         documentation further documentation, visit
         https://www.alphavantage.co/ """
     payload = {'symbol': symbol,
-        'outputsize': outputsize,
-        'datatype': 'json',
-        'apikey': apikey}
+            'outputsize': outputsize,
+            'datatype': 'json',
+            'apikey': apikey}
     if call_function == 'time_series_daily_adjusted':
         payload['function'] = 'TIME_SERIES_DAILY_ADJUSTED'
     elif call_function == 'time_series_intraday':
