@@ -7,36 +7,36 @@ import argparse
 # Define and parse arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('call_function',
-	choices=['time_series_intraday','time_series_daily_adjusted'],
-	type=str,
-	help='Two functions are currently supported. Intraday returns within day trade data, daily returns EOD data.')
+    choices=['time_series_intraday','time_series_daily_adjusted'],
+    type=str,
+    help='Two functions are currently supported. Intraday returns within day trade data, daily returns EOD data.')
 parser.add_argument('outputsize',
-	choices = ['full', 'compact'],
-	type = str,
-	help = 'Output size from api call. Compact restricts to last 100 data points.')
+    choices = ['full', 'compact'],
+    type = str,
+    help = 'Output size from api call. Compact restricts to last 100 data points.')
 parser.add_argument('symbol_list',
-	type = str,
-	help = 'File with containing stock symbols. One symbol per line.')
+    type = str,
+    help = 'File with containing stock symbols. One symbol per line.')
 parser.add_argument('apikey_file',
-	type = str,
-	help = 'File path for api key.')
+    type = str,
+    help = 'File path for api key.')
 parser.add_argument('-i', '--interval',
-	type = str,
-	default = '1min',
-	choices = ['1min', '5min', '15min', '30min', '60min'],
-	help = 'Optional argument specifying frequency of data for time_series_intraday. Defaults to 1min.')
+    type = str,
+    default = '1min',
+    choices = ['1min', '5min', '15min', '30min', '60min'],
+    help = 'Optional argument specifying frequency of data for time_series_intraday. Defaults to 1min.')
 args = parser.parse_args()
 
 # Begin functions to extract and print stock symbol data
 def read_apikey(apikey_file):
 	""" Read in file with api key and return key. """
-	try:
-		with open(apikey_file) as f:
-			data = f.read().replace('\n', '')
-		return(data)
-	except:
-		print('Could not read api key')
-		sys.exit('Bye')
+    try:
+        with open(apikey_file) as f:
+            data = f.read().replace('\n', '')
+        return(data)
+    except:
+        print('Could not read api key')
+        sys.exit('Bye')
 
 def read_symbols(symbols):
 	""" Read in file with symbols, where the file contains 

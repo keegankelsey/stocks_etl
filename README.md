@@ -16,20 +16,20 @@ The script currently supports two functions supplied by Alpha Vantage; a functio
 ***Example 1:*** Extract the last 100 time points from stocks, based on 5 minute intervals.
 ```
 python api_alphavantage_extract.py \
-	time_series_intraday \
-	compact \
-	../data/symbols.txt \
-	~/.api/api_alphavantage.key \
-	-i 5min 
+    time_series_intraday \
+    compact \
+    ../data/symbols.txt \
+    ~/.api/api_alphavantage.key \
+    -i 5min 
 ```
 
 ***Example 2:*** Extract all daily historical summary data (open, high, low, close, etc.) from four stocks.
 ```
 python api_alphavantage_extract.py \
-	time_series_daily_adjusted \
-	full \
-	../data/symbols.txt \
-	~/.api/api_alphavantage.key
+    time_series_daily_adjusted \
+    full \
+    ../data/symbols.txt \
+    ~/.api/api_alphavantage.key
 ```
 
 -----------
