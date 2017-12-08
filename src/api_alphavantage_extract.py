@@ -29,7 +29,7 @@ args = parser.parse_args()
 
 # Begin functions to extract and print stock symbol data
 def read_apikey(apikey_file):
-	""" Read in file with api key and return key. """
+    """ Read in file with api key and return key. """
     try:
         with open(apikey_file) as f:
             data = f.read().replace('\n', '')
@@ -39,48 +39,48 @@ def read_apikey(apikey_file):
         sys.exit('Bye')
 
 def read_symbols(symbols):
-	""" Read in file with symbols, where the file contains 
-		one, and only one symbol per line. """
-	try:
-		with open(symbols) as f:
-			lines = f.read().splitlines()
-		return(lines)
-	except:
-		print('Could not read list of symbols')
-		sys.exit('Bye')
+    """ Read in file with symbols, where the file contains 
+        one, and only one symbol per line. """
+    try:
+        with open(symbols) as f:
+    	    lines = f.read().splitlines()
+        return(lines)
+    except:
+        print('Could not read list of symbols')
+        sys.exit('Bye')
 
 def generate_url_payload(call_function, symbol, outputsize, apikey):
-	""" Here, we define variables for a 'get' request. Note, 
-		the api allows for various intervals (1min vs. 5min, etc.)
-		when using the TIME_SERIES_INTRADAY function. For
-		documentation further documentation, visit
-		https://www.alphavantage.co/ """
-	payload = {'symbol': symbol,
-			'outputsize': outputsize,
-			'datatype': 'json',
-			'apikey': apikey}
-	if call_function == 'time_series_daily_adjusted':
-		payload['function'] = 'TIME_SERIES_DAILY_ADJUSTED'
-	elif call_function == 'time_series_intraday':
-		payload['function'] = 'TIME_SERIES_INTRADAY'
-		payload['interval'] = args.interval
-	else:
-		print('Could not generate payload')
-		sys.exit('Bye')
-	return(payload)
+    """ Here, we define variables for a 'get' request. Note, 
+        the api allows for various intervals (1min vs. 5min, etc.)
+        when using the TIME_SERIES_INTRADAY function. For
+        documentation further documentation, visit
+        https://www.alphavantage.co/ """
+    payload = {'symbol': symbol,
+        'outputsize': outputsize,
+        'datatype': 'json',
+        'apikey': apikey}
+    if call_function == 'time_series_daily_adjusted':
+        payload['function'] = 'TIME_SERIES_DAILY_ADJUSTED'
+    elif call_function == 'time_series_intraday':
+        payload['function'] = 'TIME_SERIES_INTRADAY'
+        payload['interval'] = args.interval
+    else:
+        print('Could not generate payload')
+        sys.exit('Bye')
+    return(payload)
 
 def get_stock_data(payload):
-	""" This function takes in a payload for an individual
-		symbol, applies the payload to a 'get' request, and
-		then outputs data from the api call."""
-	r = requests.get('https://www.alphavantage.co/query', params = payload, timeout = 100)
-	return(r.json())
+    """ This function takes in a payload for an individual
+        symbol, applies the payload to a 'get' request, and
+        then outputs data from the api call."""
+    r = requests.get('https://www.alphavantage.co/query', params = payload, timeout = 100)
+    return(r.json())
 
 def iterate_across_symbol_list(symbol_list, call_function, outputsize, apikey):
-	for symbol in symbol_list:
-		payload = generate_url_payload(call_function, symbol, outputsize, apikey)
-		d = get_stock_data(payload)
-		print(json.dumps(d))
+    for symbol in symbol_list:
+        payload = generate_url_payload(call_function, symbol, outputsize, apikey)
+        d = get_stock_data(payload)
+        print(json.dumps(d))
 
 # Run functions
 # First, read in api key (provided by Alpha Vantage at https://www.alphavantage.co/)
