@@ -37,12 +37,21 @@ if args.start_date > args.end_date:
 def read_stock_quotes(stock_quotes, start_date, end_date):
     """ Convert output from api call to desired set
         of quote dates """
+
+    # Approved list of functions
+    function_list = ['Time Series (Daily)',
+        'Time Series (1min)',
+        'Time Series (5min)',
+        'Time Series (15min)',
+        'Time Series (30min)',
+        'Time Series (60min)']
+    
     with open(args.stock_quotes, 'r') as f:
         for line in f:
             x = json.loads(line)
             symbol = x['Meta Data']['2. Symbol']
             quote_key = list(x)[1]
-            if quote_key == 'Time Series (Daily)':
+            if quote_key == function_list[0]:
                 for date_time in list(x[quote_key]):
                     if start_date <= date_time <= end_date:
                         d = x[quote_key][date_time]
@@ -57,11 +66,7 @@ def read_stock_quotes(stock_quotes, start_date, end_date):
                             'divident_amount': float(d['7. dividend amount']),
                             'split_coefficient': float(d['8. split coefficient'])}
                         print(json.dumps(obj))
-            elif quote_key == 'Time Series (1min)' or \
-                quote_key == 'Time Series (5min)' or \
-                quote_key == 'Time Series (15min)' or \
-                quote_key == 'Time Series (30min)' or \
-                quote_key == 'Time Series (60min)':
+            elif quote_key in function_list[1:6]:
                 for date_time in list(x[quote_key]):
                     tm = date_time.split(' ')
                     trade_date = tm[0]
