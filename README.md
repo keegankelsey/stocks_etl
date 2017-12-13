@@ -15,12 +15,12 @@ The script currently supports two functions supplied by Alpha Vantage: 1) a func
 
 ***Example 1:*** Extract the last 100 time points from stocks, based on 5 minute intervals.
 ```
-python api_alphavantage_extract.py time_series_intraday compact ../data/symbols.txt ~/.api/api_alphavantage.key -i 5min 
+$ python api_alphavantage_extract.py time_series_intraday compact ../data/symbols.txt ~/.api/api_alphavantage.key -i 5min 
 ```
 
 ***Example 2:*** Extract all daily historical summary data (open, high, low, close, etc.) from four stocks.
 ```
-python api_alphavantage_extract.py time_series_daily_adjusted full ../data/symbols.txt ~/.api/api_alphavantage.key
+$ python api_alphavantage_extract.py time_series_daily_adjusted full ../data/symbols.txt ~/.api/api_alphavantage.key
 ```
 
 -----------
@@ -34,12 +34,12 @@ This is a script that extracts desired dates from api_alphavantage_extract.py ou
 
 ***Example 1:*** Extract intraday stock quotes from 2017-12-11
 ```
-python api_alphavantage_transform.py ../data/quotes_intraday.json -sd 2017-12-11 -ed 2017-12-11
+$ python api_alphavantage_transform.py ../data/quotes_intraday.json -sd 2017-12-11 -ed 2017-12-11
 ```
 
 ***Example 2:*** Extract EOD summary data for dates ranging from 2017-12-01 to 2017-12-05.
 ```
-python api_alphavantage_transform.py ../data/quotes_daily.json -sd 2017-12-01 -ed 2017-12-05
+$ python api_alphavantage_transform.py ../data/quotes_daily.json -sd 2017-12-01 -ed 2017-12-05
 ```
 
 -----------
