@@ -29,7 +29,9 @@ args = parser.parse_args()
 
 # Begin functions to extract and print stock symbol data
 def read_apikey(apikey_file):
-    """ Read in file with api key and return key. """
+    """ 
+        Read in file with api key and return key.
+    """
     try:
         with open(apikey_file) as f:
             data = f.read().replace('\n', '')
@@ -39,8 +41,10 @@ def read_apikey(apikey_file):
         sys.exit('Bye')
 
 def read_symbols(symbols):
-    """ Read in file with symbols, where the file contains 
-        one, and only one symbol per line. """
+    """ 
+        Read in file with symbols, where the file contains 
+        one, and only one symbol per line.
+    """
     try:
         with open(symbols) as f:
             lines = f.read().splitlines()
@@ -50,11 +54,13 @@ def read_symbols(symbols):
         sys.exit('Bye')
 
 def generate_url_payload(call_function, symbol, outputsize, apikey):
-    """ Here, we define variables for a 'get' request. Note, 
+    """ 
+        Here, we define variables for a 'get' request. Note, 
         the api allows for various intervals (1min vs. 5min, etc.)
         when using the TIME_SERIES_INTRADAY function. For
         documentation further documentation, visit
-        https://www.alphavantage.co/ """
+        https://www.alphavantage.co/
+    """
     payload = {'symbol': symbol,
             'outputsize': outputsize,
             'datatype': 'json',
@@ -70,9 +76,11 @@ def generate_url_payload(call_function, symbol, outputsize, apikey):
     return(payload)
 
 def get_stock_data(payload):
-    """ This function takes in a payload for an individual
+    """ 
+        This function takes in a payload for an individual
         symbol, applies the payload to a 'get' request, and
-        then outputs data from the api call."""
+        then outputs data from the api call.
+    """
     r = requests.get('https://www.alphavantage.co/query', params = payload, timeout = 100)
     return(r.json())
 

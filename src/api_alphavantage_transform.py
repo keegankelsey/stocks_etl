@@ -35,8 +35,10 @@ if args.start_date > args.end_date:
 
 # Begin functions to extract and print stock symbol data
 def read_stock_quotes(stock_quotes, start_date, end_date):
-    """ Convert output from api call to desired set
-        of quote dates """
+    """ 
+        Convert output from api call to desired set
+        of quote dates
+    """
 
     # Approved list of functions
     function_list = ['Time Series (Daily)',
