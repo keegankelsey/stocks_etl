@@ -6,7 +6,7 @@ Purpose: For extracting and processing stock data.
 
 ## 1. src/generate_stock_symbol_lists.py
 
-There are now several APIs that return summary stock data, *if* you happen to know the stock symbol. However, if you are not interested in any particular company and want to perform a global analysis of trading data, there are few APIs that list all stocks serviced. Here, we use [www.nasdaq.com](http://www.nasdaq.com/) to access full lists of stock symbols from three exchanges; NASDAQ, AMEX and NYSE. The returned list, stock symbols from more than 6,000 companies, may then be used as input to downstream API calls.
+There are now several APIs that return summary stock data, *if* you happen to know the stock symbol. However, most financial API services do not simply list all serviced stocks, and if you don't know the stock symbol it is difficult to know where to look for data. This poses a problem if you want to perform a global analysis of trading data, or mine data for hidden relationships. To circumvent this problem, we use [www.nasdaq.com](http://www.nasdaq.com/) to access full lists of stock symbols from three exchanges; NASDAQ, AMEX and NYSE. The returned list, stock symbols from more than 6,000 companies, may then be used as input to downstream API calls for collecting historical or real-time quotes.
 
 ***Example 1:*** Extract sorted list of stock symbols from NASDAQ, AMEX and NYSE.
 ```
