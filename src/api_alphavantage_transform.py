@@ -63,7 +63,7 @@ def read_stock_quotes(stock_quotes, start_date, end_date):
                             'close': float(d['4. close']),
                             'adjusted_close': float(d['5. adjusted close']),
                             'volume': float(d['6. volume']),
-                            'divident_amount': float(d['7. dividend amount']),
+                            'dividend_amount': float(d['7. dividend amount']),
                             'split_coefficient': float(d['8. split coefficient'])}
                         print(json.dumps(obj))
             elif quote_key in function_list[1:6]:
