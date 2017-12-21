@@ -1,5 +1,5 @@
 # stocks_etl
-Purpose: For extracting and processing stock data.
+Purpose: For extracting, transforming and loading stock data.
 
 -----------
 -----------
@@ -66,4 +66,8 @@ Once the DB is setup, you'll want to create structure within your instance. Here
 CREATE DATABASE stocks;
 ```
 
+Now, we can create a table within stocks to begin loading all of our new data. This SQL may be run from within the MySQL command line client, or, if you have set up a "configure" file with appropriate credentials, you may simply run the SQL from command line:
+```
+mysql < create_tb_stock_eod.sql
+```
 
