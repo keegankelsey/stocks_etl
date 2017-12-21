@@ -1,4 +1,4 @@
-# utils_stocks
+# stocks_etl
 Purpose: For extracting and processing stock data.
 
 -----------
