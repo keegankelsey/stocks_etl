@@ -55,3 +55,15 @@ $ python api_alphavantage_transform.py ../data/quotes_daily.json -sd 2017-12-01 
 
 -----------
 
+## 4. src/create_tb_stock_eod.sql
+
+We now have stock data in JSON format and can access it using various different methods. One method is to use AWS, store the JSON data in a S3 bucket and then perform a serverless query using [Athena](https://aws.amazon.com/athena/). Another method, is to load the data into a more traditional database such as MySQL, PostgreSQL or Oracle. There are pros and cons to all methods, however let's use MySQL to store and access our data.
+
+I've already created a MySQL database (DB) instance in my AWS account using RDS. Alternatively, MySQL may be set up and run on your local computer.
+
+Once the DB is setup, you'll want to create structure within your instance. Here, I've created a database within MySQL called, "stocks." The below code is SQL may be run within the MySQL command line client:
+```sql
+CREATE DATABASE stocks;
+```
+
+
