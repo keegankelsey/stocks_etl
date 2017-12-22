@@ -62,7 +62,7 @@ We now have stock data in JSON format and can access it using various different 
 I've already created a MySQL database (DB) instance in my AWS account using RDS. Alternatively, MySQL may be set up and run on your local computer.
 
 Once the DB is setup, you'll want to create structure within your instance. Here, I've created a database within MySQL called, "stocks." The below code is SQL may be run within the MySQL command line client:
-```sql
+```
 mysql> CREATE DATABASE stocks;
 ```
 
