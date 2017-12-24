@@ -71,3 +71,33 @@ Now, we can create a table within stocks to begin loading all of our new data. T
 $ mysql < create_tb_stock_eod.sql
 ```
 
+-----------
+
+## 5. src/load_stock_eod.sql
+
+Finally, now that we have our data and somewhere to put our data, we need to load data into the database. MySQL can easily load data from a .csv file, so let's convert our data to a flat file. Again, we have options for how to do this. One option is to simply create another function in Python to translate JSON to the flat, csv structure. However, it is just as easy to process JSON with [jq](https://stedolan.github.io/jq/) from command-line (here, I am running Linux). I am simply printing out the full file using `cat` and then piping the output with , `|`, to `jq` for further manipulation.
+
+```
+$ cat ../data/quotes_today.json | jq -r '[.symbol, .trade_date, .open, .high, .low, .close, .adjusted_close, .volume, .dividend_amount, .split_coefficient] | @csv' > ../data/quotes_load.csv
+```
+
+Next, we can load our `../data/quotes_load.csv` file using SQL. 
+```
+$ mysql < load_stock_eod.sql
+```
+
+And that is it! We now have data in our database that is easy to query and access. Enjoy!
+```
+mysql> select * from stocks.stock_eod;
++----+--------+------------+---------+---------+---------+---------+----------------+-------------+-----------------+-------------------+---------------------+
+| id | symbol | trade_date | open    | high    | low     | close   | adjusted_close | volume      | dividend_amount | split_coefficient | time_created        |
++----+--------+------------+---------+---------+---------+---------+----------------+-------------+-----------------+-------------------+---------------------+
+|  1 | AAPL   | 2017-12-18 |  174.88 |  177.20 |  174.86 |  176.42 |         176.42 | 28831533.00 |            0.00 |              1.00 | 2017-12-24 06:22:37 |
+|  2 | AMZN   | 2017-12-18 | 1187.37 | 1194.78 | 1180.91 | 1190.58 |        1190.58 |  2767271.00 |            0.00 |              1.00 | 2017-12-24 06:22:37 |
+|  3 | GOOG   | 2017-12-18 | 1066.08 | 1078.49 | 1062.00 | 1077.14 |        1077.14 |  1552016.00 |            0.00 |              1.00 | 2017-12-24 06:22:37 |
+|  4 | TWTR   | 2017-12-18 |   23.24 |   24.74 |   23.13 |   24.68 |          24.68 | 48506629.00 |            0.00 |              1.00 | 2017-12-24 06:22:37 |
++----+--------+------------+---------+---------+---------+---------+----------------+-------------+-----------------+-------------------+---------------------+
+4 rows in set (0.00 sec)
+```
+
+-----------
