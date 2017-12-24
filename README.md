@@ -38,7 +38,7 @@ $ python api_alphavantage_extract.py time_series_daily_adjusted full ../data/sym
 
 ## 3. src/api_alphavantage_transform.py
 
-Data returned from Alpha Vantage comes in two forms; A) the last 100 data intervals, or B) all historical data. We don't always want a large chunk of data and, in some cases, simply want the most recent day of data. This is a script that extracts desired dates from api_alphavantage_extract.py output and allows you to specify your desired date range. Two functions (intraday and daily) are supported. This script also restructures the data to supply one JSON object per stock symbol and time period. 
+Data returned from Alpha Vantage comes in two forms; A) the last 100 data intervals, or B) all historical data. We don't always want a large chunk of data and, in some cases, simply want the most recent day of data. This is a script that extracts desired dates from `api_alphavantage_extract.py` output and allows you to specify your desired date range. Two functions (intraday and daily) are supported. This script also restructures the data to supply one JSON object per stock symbol and time period. 
 
 `quotes_intraday.json` and `quotes_daily.json` are located in the data directory and are supplied for the purpose of testing.
 
@@ -61,7 +61,7 @@ We now have stock data in JSON format and can access it using various different 
 
 I've already created a MySQL database (DB) instance in my AWS account using RDS. Alternatively, MySQL may be set up and run on your local computer.
 
-Once the DB is setup, you'll want to create structure within your instance. Here, I've created a database within MySQL called, "stocks." The below code is SQL may be run within the MySQL command line client:
+Once the DB is setup, you'll want to create structure within your DB instance to house the data. Here, I've created a database within MySQL called, "stocks." The below code is SQL may be run within the MySQL command line client:
 ```
 mysql> CREATE DATABASE stocks;
 ```
