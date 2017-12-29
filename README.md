@@ -86,7 +86,7 @@ Next, we can load our `../data/quotes_load.csv` file using SQL.
 $ mysql < load_stock_eod.sql
 ```
 
-And that is it! We now have data in our database that is easy to query and access. Enjoy!
+And that is it! We now have data in our database that is easy to access and query. Enjoy!
 ```
 mysql> select * from stocks.stock_eod;
 +----+--------+------------+---------+---------+---------+---------+----------------+-------------+-----------------+-------------------+---------------------+
