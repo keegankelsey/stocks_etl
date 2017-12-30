@@ -82,7 +82,7 @@ def get_stock_data(payload):
         symbol, applies the payload to a 'get' request, and
         then outputs data from the api call.
     """
-    r = requests.get('https://www.alphavantage.co/query', params = payload, timeout = 100)
+    r = requests.get('https://www.alphavantage.co/query', params = payload, timeout = 500)
     return(r.json())
 
 def iterate_across_symbol_list(symbol_list, call_function, outputsize, apikey):
