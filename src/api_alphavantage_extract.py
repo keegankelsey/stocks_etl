@@ -1,6 +1,7 @@
 import requests
 from sys import argv
 import sys
+import time
 import json
 import argparse
 
@@ -88,6 +89,7 @@ def iterate_across_symbol_list(symbol_list, call_function, outputsize, apikey):
     for symbol in symbol_list:
         payload = generate_url_payload(call_function, symbol, outputsize, apikey)
         d = get_stock_data(payload)
+        time.sleep(1) 
         print(json.dumps(d))
 
 # Run functions
