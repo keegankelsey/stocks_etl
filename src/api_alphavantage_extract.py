@@ -82,8 +82,12 @@ def get_stock_data(payload):
         symbol, applies the payload to a 'get' request, and
         then outputs data from the api call.
     """
-    r = requests.get('https://www.alphavantage.co/query', params = payload, timeout = 500)
-    return(r.json())
+    try:
+        r = requests.get('https://www.alphavantage.co/query', params = payload, timeout = 1000)
+        return(r.json())
+    except:
+        m = {'Error Message (local)': 'Could not process requests.get(). Potential timeout.'}
+        return(m)
 
 def iterate_across_symbol_list(symbol_list, call_function, outputsize, apikey):
     for symbol in symbol_list:
